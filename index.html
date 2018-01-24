@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <title>Get Stock Quote</title>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <style>
+    body {
+       margin-top: 100px;
+       margin-left: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>Enter Stock Quote</h3>
+  <form class="pure-form">
+    <input type="text" class="pure-input-rounded" id="quote">
+    <button type="submit" class="pure-button" id="search">Search</button>
+  </form>
+
+  <script>
+  $('#search').click(function(e) {
+     e.preventDefault();
+     var stock = $('#quote').val();
+     $.getJSON('https://api.iextrading.com/1.0/stock/' + stock + '/quote', function(json){
+        alert("Current price of " + stock + ": " + json['latestPrice']);
+     });
+  });
+  </script>
+</body>
+</html>
